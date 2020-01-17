@@ -9,7 +9,7 @@ const Add = ({ addNote }) => {
   };
 
   return e("div", { id: "add", className: "tab action", onClick },
-    e("img", { id: "plus", src: "plus.svg" }));
+    e("img", { id: "plus", src: "plus.svg", alt: "+" }));
 };
 
 const mapDispatchToProps = (dispatch) => ({
