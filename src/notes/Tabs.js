@@ -26,7 +26,7 @@ const Tabs = ({ notes, reorderNote }) => {
 };
 
 const mapStateToProps = (state) => ({
-  notes: state.notes.filter((note) => state.open.includes(note.id)),
+  notes: state.open.map((id) => state.notes.find((note) => note.id === id)),
 });
 
 const mapDispatchToProps = (dispatch) => ({
