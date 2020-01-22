@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Sortable from "sortablejs";
 import Tab from "./Tab";
+import selectors from "./store/selectors";
 
-const Tabs = ({ notes, reorderNote }) => {
+const Tabs = ({ openNotes, reorderNote }) => {
   useEffect(() => {
     const tabs = document.getElementById("tabs");
     Sortable.create(tabs, {
@@ -22,18 +23,18 @@ const Tabs = ({ notes, reorderNote }) => {
 
   return (
     <div id="tabs">
-      {notes.map((note) => <Tab key={note.id} note={note} />)}
+      {openNotes.map((note) => <Tab key={note.id} note={note} />)}
     </div>
   );
 };
 
 Tabs.propTypes = {
-  notes: PropTypes.array,
+  openNotes: PropTypes.array,
   reorderNote: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
-  notes: state.open.map((id) => state.notes.find((note) => note.id === id)),
+  openNotes: selectors.openNotes(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

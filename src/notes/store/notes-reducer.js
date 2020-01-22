@@ -46,7 +46,9 @@ const CLOSE_NOTE = (state, action) => {
     open.splice(openIndex, 1);
   }
   // Activate next or previous open note if exists
-  const active = open[openIndex] || open[openIndex - 1] || null;
+  const active = (openIndex !== -1)
+    ? open[openIndex] || open[openIndex - 1] || null
+    : state.active;
   return {
     ...state,
     open,

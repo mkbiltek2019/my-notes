@@ -7,7 +7,7 @@ import Add from "./Add";
 import Menu from "./Menu";
 
 const App = () => {
-  const [Main, setMain] = useState(Manage);
+  const [Main, setMain] = useState(Textarea);
 
   const open = (isOpen) => {
     setMain(isOpen ? Manage : Textarea);

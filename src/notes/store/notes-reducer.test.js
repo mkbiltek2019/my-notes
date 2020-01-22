@@ -104,6 +104,26 @@ test("CLOSE_NOTE", () => {
     active: 5,
     fresh: null,
   });
+
+  expect(notesReducer({
+    notes: [
+      { id: 2, title: "Cooking", text: "This is Cooking" },
+      { id: 4, title: "Todos", text: "This is Todos" },
+      { id: 5, title: "New Note", text: "" },
+    ],
+    open: [5, 4], // should stay unchanged
+    active: 5,
+    fresh: null,
+  }, { type: "CLOSE_NOTE", id: 2 })).toEqual({
+    notes: [
+      { id: 2, title: "Cooking", text: "This is Cooking" },
+      { id: 4, title: "Todos", text: "This is Todos" },
+      { id: 5, title: "New Note", text: "" },
+    ],
+    open: [5, 4],
+    active: 5,
+    fresh: null,
+  });
 });
 
 test("ACTIVATE_NOTE", () => {
@@ -145,6 +165,25 @@ test("REMOVE_NOTE", () => {
     ],
     open: [2],
     active: 2,
+    fresh: null,
+  });
+
+  expect(notesReducer({
+    notes: [
+      { id: 2, title: "Cooking", text: "This is Cooking" },
+      { id: 4, title: "Todos", text: "This is Todos" },
+      { id: 5, title: "New Note", text: "" },
+    ],
+    open: [2, 5],
+    active: 5,
+    fresh: 5,
+  }, { type: "REMOVE_NOTE", id: 4 })).toEqual({
+    notes: [
+      { id: 2, title: "Cooking", text: "This is Cooking" },
+      { id: 5, title: "New Note", text: "" },
+    ],
+    open: [2, 5],
+    active: 5,
     fresh: null,
   });
 });

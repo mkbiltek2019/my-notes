@@ -36,8 +36,13 @@ body {
   resize: none;
 }
 
+#textarea::selection {
+  background: silver;
+}
+
 #panel {
   display: flex;
+  border-top: 2px solid royalblue;
 }
 
 #tabs {
@@ -54,31 +59,28 @@ body {
   white-space: nowrap;
   user-select: none;
   outline: none;
-  background: white;
-  color: silver;
-  border: 1px solid silver;
-  padding: 15px;
-  margin: 0 0 -1px -1px;
+  padding: 15px 20px;
   font-size: 70%;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.tab:first-child {
-  margin-left: -2px;
+#tabs .tab {
+  background: #becefe;
+  color: white;
 }
 
-.tab:last-child {
-  margin-right: -1px;
-}
-
-.tab.active {
-  font-weight: bold;
-  color: black;
+#tabs .tab.active {
+  background: royalblue;
   z-index: 100;
 }
 
-.tab.sortable-ghost {
-  opacity: .2;
+.tab::selection {
+  background: white;
+}
+
+#tabs .tab.sortable-ghost {
+  opacity: 0;
 }
 
 .tab.action {
@@ -90,23 +92,16 @@ body {
 
 .tab.action img {
   align-self: center;
-  margin: 10px 0;
-  padding: 0 12px;
-  height: 1.1em;
+  padding: 10px 12px;
+  height: 1.25em;
   cursor: pointer;
   font-weight: bold;
   color: black;
 }
 
-#add {
-  border-right: none;
-}
-
 #menu {
   flex-grow: 1;
   justify-content: flex-end;
-  border-left: none;
-  margin-left: 0;
 }
 
 #menu .open {
@@ -115,6 +110,65 @@ body {
 
 .hide {
   display: none;
+}
+
+#manage {
+  overflow-y: auto;
+}
+
+.row {
+  padding: 10px 10px 5px 10px;
+}
+
+.row-title {
+  font-weight: bold;
+}
+
+.row-actions span {
+  margin-left: 20px;
+}
+
+#manage-notes .row {
+  display: flex;
+}
+
+#manage-notes .row-title {
+  flex-grow: 1;
+}
+
+#export {
+  display: flex;
+}
+
+#export .row {
+  text-align: right;
+}
+
+.good-action, .bad-action {
+  cursor: pointer;
+  user-select: none;
+}
+
+.good-action {
+  color: royalblue;
+  font-weight: bold;
+}
+
+.bad-action {
+  color: #e3e3e3;
+}
+
+.confirmation {
+  color: palevioletred;
+}
+
+.confirmation span {
+  font-weight: bold;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid royalblue;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
@@ -146,4 +200,3 @@ body {
 #dark #textarea::placeholder {
   color: #e0e0e0;
 }
-

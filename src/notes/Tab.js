@@ -38,13 +38,18 @@ const Tab = ({
   };
   const onBlur = () => {
     stopRename(ref);
-    if (title === ref.current.innerText) {
+    const newTitle = ref.current.innerText.trim();
+    if (newTitle === title) {
+      ref.current.innerText = title;
       return;
     }
 
-    editNote(id, { title: ref.current.innerText });
+    editNote(id, { title: newTitle });
+
+    // Reference still exists (newTitle is not saved)
+    // Title cannot be "" if text is not "" (deleting)
     if (ref.current) {
-      ref.current.innerText = title;
+      ref.current.innerText = title; // change title back
     }
   };
 

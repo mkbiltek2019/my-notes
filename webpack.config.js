@@ -23,6 +23,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./bin"),
     filename: "[name].js",
+    chunkFilename: "[name].js",
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
   },
   plugins: [
     new CopyPlugin([

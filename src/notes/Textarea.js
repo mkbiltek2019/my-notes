@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import selectors from "./store/selectors";
 
 const Textarea = ({ notesLength, activeNote, editNote }) => {
   const { id, text } = activeNote || {}; // fallback in case no note is active
@@ -12,9 +13,10 @@ const Textarea = ({ notesLength, activeNote, editNote }) => {
 
     if (!id) {
       return ""
-        + "Create or open a note first.\r\n"
+        + "Create or open a note first.\r\n\r\n"
         + "Use the + button to create a note.\r\n"
-        + `Use the gear button to open a note. (you have ${notesLength} notes)`;
+        + "Use the gear button to open a note.\r\n\r\n"
+        + `You have ${notesLength} note${notesLength > 1 ? "s" : ""}.`;
     }
 
     return "Type your notes here.";
@@ -44,7 +46,7 @@ Textarea.propTypes = {
 
 const mapStateToProps = (state) => ({
   notesLength: state.notes.length,
-  activeNote: state.notes.find((note) => note.id === state.active),
+  activeNote: selectors.activeNote(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
