@@ -1,4 +1,4 @@
-import { notesReducer } from "./index";
+import notesReducer from "./notes-reducer";
 
 const initialState = () => ({
   notes: [],
