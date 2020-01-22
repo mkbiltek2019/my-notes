@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-const e = React.createElement;
+const Menu = (props) => {
+  const [open, setOpen] = useState(false);
 
-export default function Menu() {
-  return e("div", { id: "menu", className: "tab action" },
-    e("img", { id: "gear", src: "gear.svg", alt: "Gear" }));
-}
+  const onClick = () => {
+    setOpen(!open);
+    props.open(!open);
+  };
+
+  return (
+    <div id="menu" className="tab action">
+      <img
+        id="gear" className={open ? "open" : ""}
+        src="gear.svg"
+        alt="Gear"
+        onClick={onClick} />
+    </div>
+  );
+};
+
+Menu.propTypes = {
+  open: PropTypes.func,
+};
+
+export default Menu;

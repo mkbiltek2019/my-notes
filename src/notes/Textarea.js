@@ -1,7 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
-const e = React.createElement;
 
 const Textarea = ({ notesLength, activeNote, editNote }) => {
   const { id, text } = activeNote || {}; // fallback in case no note is active
@@ -21,16 +20,26 @@ const Textarea = ({ notesLength, activeNote, editNote }) => {
     return "Type your notes here.";
   };
 
-  return e("textarea", {
-    id: "textarea",
-    placeholder: placeholder(),
-    value: text || "",
-    onChange: (event) => {
-      if (id) {
-        editNote(id, { text: event.target.value });
-      }
-    },
-  });
+  const onChange = (event) => {
+    if (id) {
+      editNote(id, { text: event.target.value });
+    }
+  };
+
+  return (
+    <textarea
+      id="textarea"
+      placeholder={placeholder()}
+      value={text || ""}
+      onChange={onChange}
+    />
+  );
+};
+
+Textarea.propTypes = {
+  notesLength: PropTypes.number,
+  activeNote: PropTypes.object,
+  editNote: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({

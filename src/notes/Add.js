@@ -1,15 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-const e = React.createElement;
+const Add = ({ addNote }) => (
+  <div id="add" className="tab action" onClick={addNote}>
+    <img id="plus" src="plus.svg" alt="+" />
+  </div>
+);
 
-const Add = ({ addNote }) => {
-  const onClick = () => {
-    addNote();
-  };
-
-  return e("div", { id: "add", className: "tab action", onClick },
-    e("img", { id: "plus", src: "plus.svg", alt: "+" }));
+Add.propTypes = {
+  addNote: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -23,14 +23,17 @@ body {
   font-size: inherit;
 }
 
-#textarea {
+#textarea, #manage {
   width: 100%;
   height: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+#textarea {
   border: 0;
   outline: none;
   resize: none;
-  box-sizing: border-box;
-  padding: 25px;
 }
 
 #panel {
@@ -106,9 +109,17 @@ body {
   margin-left: 0;
 }
 
+#menu .open {
+  animation: spin 4s linear infinite;
+}
+
 .hide {
   display: none;
 }
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 
 /* Light mode */

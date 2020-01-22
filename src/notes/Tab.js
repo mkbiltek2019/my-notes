@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
-const e = React.createElement;
 
 const startRename = (ref) => {
   ref.current.setAttribute("contenteditable", "true");
@@ -59,7 +58,17 @@ const Tab = ({
     onBlur,
   };
 
-  return e("div", options, title);
+  return (
+    <div {...options}>{title}</div>
+  );
+};
+
+Tab.propTypes = {
+  note: PropTypes.object,
+  isActive: PropTypes.func,
+  isFresh: PropTypes.func,
+  activate: PropTypes.func,
+  editNote: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({

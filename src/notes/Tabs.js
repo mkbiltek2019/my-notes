@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Sortable from "sortablejs";
 import Tab from "./Tab";
-
-const e = React.createElement;
 
 const Tabs = ({ notes, reorderNote }) => {
   useEffect(() => {
@@ -21,8 +20,16 @@ const Tabs = ({ notes, reorderNote }) => {
     });
   }, []);
 
-  return e("div", { id: "tabs" },
-    notes.map((note) => e(Tab, { key: note.id, note })));
+  return (
+    <div id="tabs">
+      {notes.map((note) => <Tab key={note.id} note={note} />)}
+    </div>
+  );
+};
+
+Tabs.propTypes = {
+  notes: PropTypes.array,
+  reorderNote: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
