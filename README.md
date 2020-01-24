@@ -1,6 +1,18 @@
 ## Builds
 
-**#1 (current)**
+**#2 (current)**
+
+- Update **design**
+
+- **Manage** Notes (Open, Close, Delete, Export)
+
+- **Export** Notes (Open, Closed, All) in TXT or MD
+
+- Trim **Title** on rename
+
+<br>
+
+**#1**
 
 - **Add** Note with a + button
 
