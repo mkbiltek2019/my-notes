@@ -1,8 +1,14 @@
 ## Builds
 
-**#2 (current)**
+**#3 (latest)**
 
-- Update **design**
+- Update **design** (rounded tabs, higher contrast, no gear animation)
+
+<br>
+
+**#2**
+
+- Update **design** (more blue color, gear animation)
 
 - **Manage** Notes (Open, Close, Delete, Export)
 

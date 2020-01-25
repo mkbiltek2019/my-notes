@@ -2,7 +2,7 @@
   "name": "my-notes",
   "author": "Pavel Bucka",
   "license": "MIT",
-  "version": "3.0.0-2",
+  "version": "3.0.0-3",
   "repository": "penge/my-notes",
   "scripts": {
     "test": "jest",
