@@ -42,12 +42,12 @@ body {
 
 #panel {
   display: flex;
-  border-top: 2px solid royalblue;
 }
 
 #tabs {
   display: flex;
   overflow-x: hidden;
+  padding-left: 6px;
 }
 
 #tabs:hover {
@@ -59,20 +59,24 @@ body {
   white-space: nowrap;
   user-select: none;
   outline: none;
-  padding: 15px 20px;
   font-size: 70%;
   font-weight: bold;
-  cursor: pointer;
 }
 
 #tabs .tab {
-  background: #becefe;
-  color: white;
+  background: white;
+  color: royalblue;
+  border: 1px solid royalblue;
+  margin: 10px 5px;
+  padding: .5em 1em;
+  border-radius: 55px;
+  cursor: pointer;
 }
 
 #tabs .tab.active {
   background: royalblue;
   z-index: 100;
+  color: white;
 }
 
 .tab::selection {
@@ -85,27 +89,25 @@ body {
 
 .tab.action {
   align-self: stretch;
-  padding: 0;
-  cursor: default;
   z-index: 100;
 }
 
 .tab.action img {
   align-self: center;
-  padding: 10px 12px;
+  padding: 10px 11px;
   height: 1.25em;
   cursor: pointer;
   font-weight: bold;
   color: black;
 }
 
+#gear {
+  padding-right: 14px;
+}
+
 #menu {
   flex-grow: 1;
   justify-content: flex-end;
-}
-
-#menu .open {
-  animation: spin 4s linear infinite;
 }
 
 .hide {
@@ -168,12 +170,8 @@ body {
 
 hr {
   border: none;
-  border-top: 2px solid royalblue;
+  border-top: 1px solid royalblue;
 }
-
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 
 /* Light mode */

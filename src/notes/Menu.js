@@ -12,7 +12,7 @@ const Menu = (props) => {
   return (
     <div id="menu" className="tab action">
       <img
-        id="gear" className={open ? "open" : ""}
+        id="gear"
         src="gear.svg"
         alt="Gear"
         onClick={onClick} />
