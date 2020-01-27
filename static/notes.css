@@ -34,8 +34,17 @@ body {
 }
 
 #tabs {
-  display: flex;
   border-top: 1px solid #9E9E9E;
+  background: #f6f6f6;
+}
+
+#tabs > div {
+  display: flex;
+}
+
+#menu {
+  display: flex;
+  flex-direction: column;
 }
 
 .tab {
@@ -69,7 +78,7 @@ body {
 }
 
 #light #textarea::placeholder {
-  color: #e5e5e5;
+  color: silver;
 }
 
 #light #textarea::selection {
