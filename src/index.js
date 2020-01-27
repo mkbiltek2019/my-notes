@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
 import store from "./store/index";
-import App from "./App";
+import Textarea from "./Textarea";
+import Tabs from "./Tabs";
 
 if (process.env.NODE_ENV === "development") {
   // eslint-disable-next-line no-console
@@ -12,7 +13,8 @@ if (process.env.NODE_ENV === "development") {
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Textarea />
+    <Tabs />
   </Provider>,
 
   document.getElementById("container"),

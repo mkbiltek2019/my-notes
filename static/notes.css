@@ -23,157 +23,41 @@ body {
   font-size: inherit;
 }
 
-#textarea, #manage {
+#textarea {
   width: 100%;
   height: 100%;
-  padding: 25px;
+  padding: 30px 20px;
   box-sizing: border-box;
-}
-
-#textarea {
   border: 0;
   outline: none;
   resize: none;
 }
 
-#textarea::selection {
-  background: silver;
-}
-
-#panel {
-  display: flex;
-  border-top: 2px solid royalblue;
-}
-
 #tabs {
   display: flex;
-  overflow-x: hidden;
-}
-
-#tabs:hover {
-  overflow-x: auto;
+  border-top: 1px solid #9E9E9E;
 }
 
 .tab {
-  display: flex;
-  white-space: nowrap;
   user-select: none;
-  outline: none;
-  padding: 15px 20px;
-  font-size: 70%;
+  padding: 20px;
+  font-size: 80%;
   font-weight: bold;
   cursor: pointer;
-}
-
-#tabs .tab {
-  background: #becefe;
-  color: white;
-}
-
-#tabs .tab.active {
-  background: royalblue;
-  z-index: 100;
-}
-
-.tab::selection {
-  background: white;
-}
-
-#tabs .tab.sortable-ghost {
-  opacity: 0;
-}
-
-.tab.action {
-  align-self: stretch;
-  padding: 0;
-  cursor: default;
-  z-index: 100;
-}
-
-.tab.action img {
-  align-self: center;
-  padding: 10px 12px;
-  height: 1.25em;
-  cursor: pointer;
-  font-weight: bold;
   color: black;
 }
 
-#menu {
-  flex-grow: 1;
-  justify-content: flex-end;
+.tab:hover, .tab.active {
+  text-decoration: underline;
 }
 
-#menu .open {
-  animation: spin 4s linear infinite;
+.space-tab {
+  flex-grow: 1;
 }
 
 .hide {
   display: none;
 }
-
-#manage {
-  overflow-y: auto;
-}
-
-.row {
-  padding: 10px 10px 5px 10px;
-}
-
-.row-title {
-  font-weight: bold;
-}
-
-.row-actions span {
-  margin-left: 20px;
-}
-
-#manage-notes .row {
-  display: flex;
-}
-
-#manage-notes .row-title {
-  flex-grow: 1;
-}
-
-#export {
-  display: flex;
-}
-
-#export .row {
-  text-align: right;
-}
-
-.good-action, .bad-action {
-  cursor: pointer;
-  user-select: none;
-}
-
-.good-action {
-  color: royalblue;
-  font-weight: bold;
-}
-
-.bad-action {
-  color: #e3e3e3;
-}
-
-.confirmation {
-  color: palevioletred;
-}
-
-.confirmation span {
-  font-weight: bold;
-}
-
-hr {
-  border: none;
-  border-top: 2px solid royalblue;
-}
-
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 
 /* Light mode */
@@ -186,6 +70,10 @@ hr {
 
 #light #textarea::placeholder {
   color: #e5e5e5;
+}
+
+#light #textarea::selection {
+  background: silver;
 }
 
 

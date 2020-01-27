@@ -5,13 +5,12 @@ const env = process.env.NODE_ENV;
 
 module.exports = {
   entry: {
-    notes: "./src/notes/index.js",
-    options: "./src/options/index.js",
+    main: "./src/index.js",
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
         exclude: /node_modules/,
         use: ["babel-loader"],
       },
