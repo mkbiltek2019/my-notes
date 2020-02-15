@@ -1,49 +1,12 @@
-"use strict";
+/* global chrome, document, fetch */
 
-(function () {
-
-/* global chrome */
-
-const commonFonts = {
-  "serif": [
-    "Georgia",
-    "Palatino Linotype",
-    "Times New Roman",
-    "Times",
-  ],
-  "sans-serif": [
-    "Arial",
-    "Arial Black",
-    "Comic Sans MS",
-    "Impact",
-    "Lucida Sans Unicode",
-    "Roboto",
-    "Tahoma",
-    "Trebuchet MS",
-    "Verdana",
-  ],
-  "monospace": [
-    "Courier",
-    "Courier New",
-    "Lucida Console",
-    "Monaco",
-  ],
-};
-
-const getFontId = (fontName) =>
-  fontName.toLowerCase().replace(" ", "-");
-
-const getFontFamily = (fontName) => {
-  const span = document.createElement("span");
-  span.style.fontFamily = fontName; // '"Roboto Mono"'
-  return span.style.fontFamily;
-};
-
-const getGoogleFontHref = (fontName) => {
-  const family = fontName.replace(" ", "+");
-  const href = `https://fonts.googleapis.com/css?family=${family}:400,700&display=swap`;
-  return href;
-};
+import commonFonts from "./options/common-fonts.js";
+import { getFontId, getFontFamily } from "./options/font-helpers.js";
+import { getGoogleFontHref } from "./options/google-fonts.js";
+import {
+  requestGoogleDriveAccess,
+  removeGoogleDriveAccess
+} from "./options/google-drive.js";
 
 // Renders commonFonts into #commonfonts
 // Rendering is based on <template> in options.html
@@ -105,6 +68,7 @@ const currentSize = document.getElementById("current-size");
 const modeRadios = document.getElementsByName("mode");
 
 const focusCheckbox = document.getElementById("focus");
+const backupCheckbox = document.getElementById("backup");
 
 
 /* Helpers */
@@ -123,11 +87,11 @@ function checkById(id) {
 function displayFontCategory(id) {
   for (const category of fontCategories) {
     category.classList.toggle("active", category.id === id);
-  };
+  }
 
   for (const area of fontAreas) {
     area.classList.toggle("hide", area.id !== id + "-area");
-  };
+  }
 }
 
 
@@ -137,7 +101,7 @@ for (const category of fontCategories) {
   category.addEventListener("click", function () {
     displayFontCategory(this.id);
   });
-};
+}
 
 fontRadios.forEach(radio => {
   radio.addEventListener("click", function () {
@@ -170,11 +134,12 @@ submit.addEventListener("click", function () {
   const fontName = fontNameInput.value.trim();
   // In case of commonFonts, "fontId" is used to check the radio button
   // of the current font (upon opening Options).
-  // In case of googlefonts, this attribute is not necessary.
+  // In case of googleFonts, this attribute is not necessary.
   const fontId = getFontId(fontName);
   const fontFamily = getFontFamily(fontName);
   const fontHref = getGoogleFontHref(fontName);
 
+  // Try to read Google Font by the user provided Font Name
   fetch(fontHref, { method: "HEAD" }).then(() => {
     const font = {
       id: fontId, // "roboto-mono"
@@ -185,8 +150,7 @@ submit.addEventListener("click", function () {
     submit.value= "Applied";
     chrome.storage.local.set({ font: font });
     setCurrentFontNameText(font);
-  })
-  .catch(() => {
+  }).catch(() => {
     submit.classList.remove("active");
     submit.value= "Font Name Doesn't Exist";
   });
@@ -212,6 +176,28 @@ focusCheckbox.addEventListener("click", function () {
   chrome.storage.local.set({ focus: this.checked });
 });
 
+backupCheckbox.addEventListener("click", function () {
+  // Checked => requesting access
+  if (backupCheckbox.checked) {
+    requestGoogleDriveAccess(result => {
+      // Checked only if access to Google Drive was granted
+      backupCheckbox.checked = result;
+
+      // Initiate first backup to Google Drive (background.js)
+      if (result) {
+        chrome.runtime.sendMessage("BACKUP");
+      }
+    });
+    return;
+  }
+
+  // Unchecked => removing access
+  removeGoogleDriveAccess(() => {
+    backupCheckbox.checked = false;
+  });
+  return;
+});
+
 
 /* Storage helpers */
 
@@ -223,7 +209,7 @@ const applyFont = (font) => {
   checkById(font.id);
 
   // Underline the generic and display its fonts
-  displayFontCategory(font.genericFamily || "googlefonts");
+  displayFontCategory(font.genericFamily || "google-fonts");
 };
 
 const applySize = (size) => {
@@ -255,6 +241,7 @@ const apply = (change, applyHandler) => {
   if (change) { applyHandler(change.newValue); }
 };
 
+// Update the data in other Options pages to keep them in sync
 chrome.storage.onChanged.addListener((changes, areaName) => {
   if (areaName === "local") {
     apply(changes["font"], applyFont);
@@ -264,10 +251,9 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
   }
 });
 
+// Read current version number from manifest.json and display it
 const setVersion = () => {
   const version = chrome.runtime.getManifest().version;
   document.getElementById("version").innerText = version;
 };
 setVersion();
-
-})(); // IIFE

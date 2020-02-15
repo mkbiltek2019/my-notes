@@ -17,7 +17,7 @@
     <span id="serif" class="font-category">Serif</span><span class="separator">/</span
     ><span id="sans-serif" class="font-category">Sans Serif</span><span class="separator">/</span
     ><span id="monospace" class="font-category">Monospace</span><span class="separator">/</span
-    ><span id="googlefonts" class="font-category">Google Fonts</span>
+    ><span id="google-fonts" class="font-category">Google Fonts</span>
   </h3>
 
   <div id="commonfonts">
@@ -37,7 +37,7 @@
       </div>
     </template>
   </div>
-  <div class="font-area" id="googlefonts-area">
+  <div class="font-area" id="google-fonts-area">
     <input type="text" placeholder="Font Name (E.g. Roboto Mono)" id="font-name-input">
     <input type="submit" value="Apply" class="heavy" id="submit">
   </div>
@@ -68,15 +68,15 @@
     <table>
       <tr>
         <td class="shortcut">Ctrl + Shift + 1</td>
-        <td>Open page 1</td>
+        <td>Jump to open note 1</td>
       </tr>
       <tr>
         <td class="shortcut">Ctrl + Shift + 2</td>
-        <td>Open page 2</td>
+        <td>Jump to open note 2</td>
       </tr>
       <tr>
         <td class="shortcut">Ctrl + Shift + 3</td>
-        <td>Open page 3</td>
+        <td>Jump to open note 3</td>
       </tr>
       <tr>
         <td class="shortcut">Ctrl + Shift + F</td>
@@ -87,15 +87,15 @@
     <table>
       <tr>
         <td class="shortcut">Option + 1</td>
-        <td>Open page 1</td>
+        <td>Jump to open note 1</td>
       </tr>
       <tr>
         <td class="shortcut">Option + 2</td>
-        <td>Open page 2</td>
+        <td>Jump to open note 2</td>
       </tr>
       <tr>
         <td class="shortcut">Option + 3</td>
-        <td>Open page 3</td>
+        <td>Jump to open note 3</td>
       </tr>
       <tr>
         <td class="shortcut">Option + F</td>
@@ -106,15 +106,27 @@
 
 
   <h2>Options</h2>
-  <div id="options">
-    <div class="selection">
+  <div>
+    <div class="selection with-comment">
       <input type="checkbox" id="focus" name="focus">
       <div>
         <label for="focus" class="heavy">Focus mode</label>
         <div class="comment">
-          Focus mode hides bottom panel (Options link and page number) to give you more editing space.<br>
+          Hides bottom panel (Options link and page number) to give you more editing space.<br>
           To change this option back, visit Options (right-click on My Notes icon in browser's toolbar),
           or press "Toggle Focus mode" keyboard shortcut.
+        </div>
+      </div>
+    </div>
+    <div class="selection with-comment">
+      <input type="checkbox" id="backup" name="backup">
+      <div>
+        <label for="backup" class="heavy">Backup My Notes to Google Drive</label>
+        <div class="comment">
+          Creates and maintains a backup of My Notes in your Google Drive under the folder My Notes.<br>
+          A permission will be requested during the process.<br>
+          If there is a backup left by a previous installation, it will be used.
+          If you had some local notes already, they will be added to the backup.
         </div>
       </div>
     </div>
@@ -131,7 +143,7 @@
     <a id="see-whats-new" href="https://github.com/penge/my-notes/releases" target="_blank">See what's new</a>
   </p>
 
-  <script src="options.js"></script>
+  <script type="module" src="options.js"></script>
 </body>
 
 </html>

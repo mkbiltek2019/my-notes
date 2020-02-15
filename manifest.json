@@ -6,8 +6,15 @@
   "icons": { "128": "icon128.png" },
   "options_page": "options.html",
   "permissions": ["storage", "contextMenus"],
+  "optional_permissions": ["identity"],
+  "oauth2": {
+    "client_id": "813847979218-b7lvog5rhci6l57c2bdtnhvujcri0ihh.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive.file"
+    ]
+  },
   "background": {
-    "scripts": ["debounce.js", "background.js"],
+    "scripts": ["background.js"],
     "persistent": false
   },
   "browser_action": {
@@ -42,5 +49,6 @@
       },
       "description": "Toggle focus mode"
     }
-  }
+  },
+  "minimum_chrome_version": "61"
 }

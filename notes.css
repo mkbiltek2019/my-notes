@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  opacity: 0;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -9,10 +8,20 @@ body {
   right: 0;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  opacity: 0;
 }
 
 #light, #dark {
   opacity: 1;
+}
+
+a {
+  text-decoration: none;
+}
+
+.hide {
+  display: none !important;
 }
 
 #notification {
@@ -21,6 +30,19 @@ body {
 
 #notification a {
   font-weight: bold;
+}
+
+#panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1em 0 1em;
+  flex-shrink: 0;
+  overflow: auto;
+}
+
+#panel img {
+  height: .8em;
 }
 
 #textarea {
@@ -35,21 +57,56 @@ body {
   padding: 1em;
 }
 
-#panel {
-  display: flex;
-  justify-content: space-between;
-  padding: .5em 1em;
+#textarea::placeholder {
+  color: #e0e0e0;
+}
+
+.note-name {
   font-weight: bold;
+  font-size: 1.4em;
+  cursor: pointer;
   user-select: none;
-  -webkit-tap-highlight-color: transparent;
 }
 
-a {
-  text-decoration: none;
+.note-name:hover {
+  text-decoration: underline;
 }
 
-.hide {
-  display: none !important;
+#notes {
+  height: 100%;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1em;
+}
+
+#notes .note-name {
+  margin-bottom: .5em;
+}
+
+#button:hover {
+  cursor: pointer;
+}
+
+#actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em;
+}
+
+.action {
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 1em;
+}
+
+.action:hover {
+  text-decoration: underline;
+}
+
+.to-be-deleted, .to-be-deleted::placeholder {
+  text-decoration: line-through;
 }
 
 
@@ -64,16 +121,13 @@ a {
   border-bottom: 1px solid silver;
 }
 
-#light #textarea::placeholder {
-  color: silver;
-}
-
-#light #panel {
-  border-top: 1px solid silver;
-}
-
 #light a {
   color: black;
+}
+
+#light .to-be-renamed {
+  background: black;
+  color: white;
 }
 
 
@@ -84,10 +138,11 @@ a {
   color: white;
 }
 
-#dark #textarea::placeholder {
-  color: #e0e0e0;
-}
-
 #dark a {
   color: white;
+}
+
+#dark .to-be-renamed {
+  background: white;
+  color: black;
 }
